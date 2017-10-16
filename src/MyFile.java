@@ -12,6 +12,7 @@ public class MyFile {
     public Filetype filetype;
     public MyDate date;
     boolean hasData;
+
     private Metadata metadata;
     private Directory directory;
 
@@ -28,13 +29,13 @@ public class MyFile {
             this.metadata = this.getMetadata();
             if (filetype == null) {
 
-                this.directory = this.metadata.getFirstDirectoryOfType(ExifSubIFDDirectory.class);
                 if (this.isImage()) {
                     this.filetype = Filetype.IMAGE_FILE;
                 } else if (this.isRaw()) {
                     this.filetype = Filetype.RAW_FILE;
                 }
 
+                this.directory = this.metadata.getFirstDirectoryOfType(ExifSubIFDDirectory.class);
                 if (this.directory != null) {
                     if (this.directory.getDate(ExifSubIFDDirectory.TAG_DATETIME_ORIGINAL) != null) {
                         this.hasData = true;
@@ -76,7 +77,7 @@ public class MyFile {
                 if (hasData) {
 
                     try {
-                        String command = "cmd /c robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
+                        String command = "cmd /c start robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
                                 "\" \"E:\\" + date.getYear() + "\\iPhone\\" + date.getMonth() + "\" " + "\"" + file.getName() + "\"" + " /mov";
                         System.out.println(command);
                         p = Runtime.getRuntime().exec(command);
@@ -91,7 +92,7 @@ public class MyFile {
 
                 } else {
                     try {
-                        String command = "cmd /c robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
+                        String command = "cmd /c start robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
                                 "\" \"E:\\No Date\\iPhone\" " + "\"" + file.getName() + "\"" + " /mov";
                         System.out.println(command);
                         p = Runtime.getRuntime().exec(command);
@@ -108,7 +109,7 @@ public class MyFile {
             case RAW_FILE:
                 if (hasData) {
                     try {
-                        String command = "cmd /c robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
+                        String command = "cmd /c start robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
                                 "\" \"E:\\" + date.getYear() + "\\Unsorted Raw\" " + "\"" + file.getName() + "\"" + " /mov";
                         System.out.println(command);
                         p = Runtime.getRuntime().exec(command);
@@ -122,7 +123,7 @@ public class MyFile {
                     }
                 } else {
                     try {
-                        String command = "cmd /c robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
+                        String command = "cmd /c start robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
                                 "\" \"E:\\No Date\\Unsorted Raw\" " + "\"" + file.getName() + "\"" + " /mov";
                         System.out.println(command);
                         p = Runtime.getRuntime().exec(command);
