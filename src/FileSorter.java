@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.IOException;
 
 public class FileSorter {
 
@@ -8,9 +9,9 @@ public class FileSorter {
         counter = 0;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException {
         FileSorter fileSorter = new FileSorter();
-        String path = "D:\\Testable Data";
+        String path = "D:\\Full Testable Data - Copy";
 
         fileSorter.sortDirectory(path);
         fileSorter.renameFilesInDirectory(path);
@@ -18,7 +19,7 @@ public class FileSorter {
 
     }
 
-    public void sortDirectory(String path) {
+    public void sortDirectory(String path) throws IOException, InterruptedException {
         System.out.println("***********SORTING DIRECTORY***********");
         File[] javaFileList = new File(path).listFiles();
         MyFile[] fileList = new MyFile[javaFileList.length];

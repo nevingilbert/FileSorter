@@ -69,89 +69,53 @@ public class MyFile {
         return file.getName().substring(file.getName().lastIndexOf(".") + 1);
     }
 
-    public void move() {
+    public void move() throws IOException, InterruptedException {
         this.printDetails();
         Process p = null;
         switch (filetype) {
             case IMAGE_FILE:
                 if (hasData) {
 
-                    try {
-                        String command = "cmd /c start robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
-                                "\" \"E:\\" + date.getYear() + "\\iPhone\\" + date.getMonth() + "\" " + "\"" + file.getName() + "\"" + " /mov";
-                        System.out.println(command);
-                        p = Runtime.getRuntime().exec(command);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        p.waitFor();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    String command = "cmd /c start /wait robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
+                            "\" \"E:\\" + date.getYear() + "\\iPhone\\" + date.getMonth() + "\" " + "\"" + file.getName() + "\"" + " /mov";
+                    System.out.println(command);
+                    p = Runtime.getRuntime().exec(command);
+                    p.waitFor();
 
                 } else {
-                    try {
-                        String command = "cmd /c start robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
-                                "\" \"E:\\No Date\\iPhone\" " + "\"" + file.getName() + "\"" + " /mov";
-                        System.out.println(command);
-                        p = Runtime.getRuntime().exec(command);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        p.waitFor();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+
+                    String command = "cmd /c start /wait robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
+                            "\" \"E:\\No Date\\iPhone\" " + "\"" + file.getName() + "\"" + " /mov";
+                    System.out.println(command);
+                    p = Runtime.getRuntime().exec(command);
+                    p.waitFor();
                 }
                 break;
             case RAW_FILE:
                 if (hasData) {
-                    try {
-                        String command = "cmd /c start robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
-                                "\" \"E:\\" + date.getYear() + "\\Unsorted Raw\" " + "\"" + file.getName() + "\"" + " /mov";
-                        System.out.println(command);
-                        p = Runtime.getRuntime().exec(command);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        p.waitFor();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+
+                    String command = "cmd /c start /wait robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
+                            "\" \"E:\\" + date.getYear() + "\\Unsorted Raw\" " + "\"" + file.getName() + "\"" + " /mov";
+                    System.out.println(command);
+                    p = Runtime.getRuntime().exec(command);
+                    p.waitFor();
+
                 } else {
-                    try {
-                        String command = "cmd /c start robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
-                                "\" \"E:\\No Date\\Unsorted Raw\" " + "\"" + file.getName() + "\"" + " /mov";
-                        System.out.println(command);
-                        p = Runtime.getRuntime().exec(command);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        p.waitFor();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+
+                    String command = "cmd /c start /wait robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
+                            "\" \"E:\\No Date\\Unsorted Raw\" " + "\"" + file.getName() + "\"" + " /mov";
+                    System.out.println(command);
+                    p = Runtime.getRuntime().exec(command);
+                    p.waitFor();
+
                 }
                 break;
             case VIDEO:
-                try {
-                    String command = "cmd /c start robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
-                            "\" \"E:\\Video\" " + "\"" + file.getName() + "\"" + " /mov";
-                    System.out.println(command);
-                    p = Runtime.getRuntime().exec(command);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    p.waitFor();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
+                String command = "cmd /c start /wait robocopy /xc /xn /xo \"" + file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf('\\')) +
+                        "\" \"E:\\Video\" " + "\"" + file.getName() + "\"" + " /mov";
+                System.out.println(command);
+                p = Runtime.getRuntime().exec(command);
+                p.waitFor();
                 break;
             case OTHER:
                 System.out.println("CANNOT MOVE NON-MEDIA File");

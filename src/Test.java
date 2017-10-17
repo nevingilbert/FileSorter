@@ -4,27 +4,19 @@ import java.util.Scanner;
 
 
 public class Test {
-    public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) throws IOException, InterruptedException {
+        MyFile file = new MyFile(new File("D:\\Full Testable Data - Copy\\IMG_3544.mov"));
+        Process p;
 
-        String path;
-//        System.out.print("Directory to sort: ");
-//        path = scanner.nextLine();
-//        System.out.println("Your Path: " + path);
+        String command = "cmd /c start /wait robocopy /xc /xn /xo \"" + file.file.getAbsolutePath().substring(0, file.file.getAbsolutePath().lastIndexOf('\\')) +
+                "\" \"E:\\Video\" " + "\"" + file.file.getName() + "\"" + " /mov";
+        System.out.println(command);
+        p = Runtime.getRuntime().exec(command);
+        p.waitFor();
+        System.out.print("Waited!");
 
-        path = "D:\\Testable Data\\Pictures\\2014\\CynPhone\\IMG_1584.JPG";
-        MyFile file = new MyFile(new File(path));
-        System.out.println(file.filetype);
 
-//        File[] javaFileList = new File(path).listFiles();
-//        MyFile[] fileList = new MyFile[javaFileList.length];
-//        for (int i = 0; i < javaFileList.length; i++) {
-//            fileList[i] = new MyFile(javaFileList[i]);
-//        }
-//
-//        for (MyFile test : fileList){
-//            System.out.println(test.file);
-//        }
+
 
     }
 }
