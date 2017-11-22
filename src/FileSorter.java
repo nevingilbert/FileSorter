@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class FileSorter {
 
@@ -10,8 +11,12 @@ public class FileSorter {
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
+
         FileSorter fileSorter = new FileSorter();
-        String path = "D:\\Full Testable Data - Copy";
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the path for the directory you want to sort: ");
+        String path = scanner.nextLine();
 
         fileSorter.sortDirectory(path);
         fileSorter.renameFilesInDirectory(path);

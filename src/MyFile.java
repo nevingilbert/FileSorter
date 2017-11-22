@@ -156,7 +156,7 @@ public class MyFile {
 
     public boolean isImage() {
         return getFileExtension(this.file).equalsIgnoreCase("jpg") || getFileExtension(this.file).equalsIgnoreCase("png") ||
-                getFileExtension(this.file).equalsIgnoreCase("jpeg");
+                getFileExtension(this.file).equalsIgnoreCase("jpeg") || getFileExtension(this.file).equalsIgnoreCase("dng") || getFileExtension(this.file).equalsIgnoreCase("bmp");
     }
 
     public boolean isRaw() {
